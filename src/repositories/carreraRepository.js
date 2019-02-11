@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose')
-var Carrera = require('../model/Carrera');
+var Carrera = require('../model/carrera');
 
 
 // noinspection JSAnnotator
@@ -14,23 +14,25 @@ module.exports = new class CarreraRepository {
         return Carrera.findById(id);
     }
 
-    create(Carrera) {
-        return Carrera.create(Carrera);
+    create(carrera) {
+        return Carrera.create(carrera);
     }
 
-    update(id, Carrera) {
-
-        const updatedCarrera = {
-            name: Carrera.name,
-            mail: Carrera.mail,
-            role: Carrera.role,
-        }
-
-        return Carrera.findByIdAndUpdate(id, updatedCarrera, { new: true });
+    update(id, carrera) {
+        console.log(carrera);
+        return  Carrera.findOneAndUpdate(
+            {
+                name: carrera.name,
+                title: carrera.title
+            },
+            {
+                upsert: true
+            }
+        );
     }
 
     delete(id) {
-        return Carrera.findByIdAndRemove(id);
+        return Carrera.findOneAndDelete(id);
     }
 
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-const CarreraRepository = require('../repositories/CarreraRepository');
+const CarreraRepository = require('../repositories/carreraRepository');
 
 var redis = require('redis');
 var client = redis.createClient();

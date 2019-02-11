@@ -20,30 +20,14 @@ module.exports = new class AlumnoRepository {
 
     update(id, alumno) {
 
-        const updatedalumno = {
-            lastname: alumno.lastname,
-            name: alumno.name,
-            date: alumno.date,
-            email: alumno.email,
-            phone: alumno.phone,
-            $set: { "address.street": alumno.street },
-            /*address: {
-                street: alumno.street,
-                city: alumno.city,
-                province: alumno.province,
-                postal_code: alumno.postal_code,
-            }*/
-
-        };
-
-        console.log('pedro: '+alumno.address.street);
-
-       return  Alumno.findOneAndUpdate(
-            {   lastname: alumno.lastname,
+        return  Alumno.findOneAndUpdate(
+            {
+                lastname: alumno.lastname,
                 name: alumno.name,
                 date: alumno.date,
                 email: alumno.email,
-                phone: alumno.phone},
+                phone: alumno.phone
+            },
             {
                 $set: {
                     "address.street": alumno.address.street,
@@ -51,15 +35,11 @@ module.exports = new class AlumnoRepository {
                     "address.province": alumno.address.province,
                     "address.postal_code": alumno.address.postal_code,
                 }
-                },
-            { upsert: true }
+            },
+            {
+                upsert: true
+            }
         )
-
-
-        /*var myquery = { address: "Valley 345" };
-        var newvalues = {$set: {address: "Canyon 123"} };
-
-        return Alumno.findOneAndReplace(id, updatedalumno, { new: true });*/
     }
 
     delete(id) {

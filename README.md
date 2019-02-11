@@ -1,5 +1,6 @@
 ﻿# node-express
-Projeto criado para demonstrar como podemos criar uma API com uma estrutura legal em 10 passos ;) 
+Proyecto crear un Api-Rest con tecnología node, mongodb, y una capa de cache con herramienta redis
 
-Link do post:
-https://goo.gl/zMwY28 
+
+
+
