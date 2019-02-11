@@ -5,9 +5,17 @@ const Schema = mongoose.Schema;
 
 
 var alumnoSchema = new Schema({
-    lastname: {type: String, unique: true },
+    //lastname: {type: String, unique: true },
+    lastname: {type: String },
     name: {type: String, unique: true },
     date: {type: Date},
+    email: {
+        type: String,
+        validate: function(email) {
+            return /^[a-zA-Z0-9.!#$%&’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)
+        }
+    },
+    phone: {type: String},
     address: {
         street: {type: String, required: true, max: 100},
         city: {type: String, required: true, max: 100},
@@ -17,8 +25,8 @@ var alumnoSchema = new Schema({
 });
 
 // Virtual for author's full name
-AuthorSchema
-    .virtual('name')
+alumnoSchema
+    .virtual('nombre')
     .get(function () {
         return this.lastname + ', ' + this.name;
     });
