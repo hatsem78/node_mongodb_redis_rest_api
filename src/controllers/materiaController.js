@@ -13,11 +13,11 @@ exports.get = (req, res, next) => {
             res.send(reply)
         } else {
             console.log('db');
-            CarreraRepository.getAll()
-                .then((Carrera) => {
-                client.set('allMaterias', JSON.stringify(Carrera));
+            MateriaRepository.getAll()
+                .then((Materia) => {
+                client.set('allMaterias', JSON.stringify(Materia));
             client.expire('allMaterias', 20);
-            res.status(200).send(Carrera);
+            res.status(200).send(Materia);
         }).catch(err => res.status(500).send(err))
         }
     });

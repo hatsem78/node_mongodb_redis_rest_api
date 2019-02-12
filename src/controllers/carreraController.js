@@ -41,14 +41,21 @@ exports.post = (req, res, next) => {
 }).catch(err => res.status(500).send(err))
 };
 
-exports.put = (req, res, next) => {
-    const p = req.body;
 
-    CarreraRepository.update(req.params.id, p)
-        .then((Carrera) => {
-        res.status(201).send(Carrera);
+exports.put = (req, res) => {
+
+    const id = req.params.id;
+    const vm = req.body;
+
+    console.log(id);
+
+    CarreraRepository.update(req.params.id, vm)
+        .then((carrera) => {
+        res.status(201).send(carrera);
 }).catch(err => res.status(500).send(err))
 };
+
+
 
 exports.delete = (req, res, next) => {
     CarreraRepository.delete(req.params.id)

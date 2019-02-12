@@ -21,7 +21,9 @@ var alumnoSchema = new Schema({
         city: {type: String, required: true, max: 100},
         province: {type: String, required: true, max: 100},
         postal_code: {type: String, required: true, max: 100},
-    }
+    },
+    carrera: [{ type: Schema.Types.ObjectId, ref: 'Carreras' }],
+    materia: [{ type: Schema.Types.ObjectId, ref: 'Materias' }]
 });
 
 // Virtual for author's full name

@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose')
-var Carrera = require('../model/carrera');
+var Carrera = require('../model/carrera')
 
 
 // noinspection JSAnnotator
@@ -19,16 +19,13 @@ module.exports = new class CarreraRepository {
     }
 
     update(id, carrera) {
-        console.log(carrera);
-        return  Carrera.findOneAndUpdate(
-            {
-                name: carrera.name,
-                title: carrera.title
-            },
-            {
-                upsert: true
-            }
-        );
+
+        const updatedcarrera = {
+            name: carrera.name,
+            title: carrera.title
+        }
+
+        return Carrera.findOneAndReplace(id, updatedcarrera);
     }
 
     delete(id) {

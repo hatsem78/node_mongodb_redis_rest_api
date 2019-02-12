@@ -1,21 +1,40 @@
 'use strict';
 var mongoose = require('mongoose');
-var Materia = require('../model/materia');
+var MateriaCursada = require('../model/materiaCursada');
+
+var Alumno = require('../model/alumno');
 
 
 // noinspection JSAnnotator
 module.exports = new class MateriaRepository {
 
     getAll() {
-        return Materia.find();
+        return MateriaCursada.find();
     }
 
     getById(id) {
-        return Materia.findById(id);
+        return MateriaCursada.findById(id);
     }
 
     create(materia) {
-        return Materia.create(materia);
+
+
+
+        var materia_cursada = MateriaCursada.create(materia);
+
+        return  Alumno.findOneAndUpdate(
+            {
+                id: materia.id
+            },
+            {
+                $set: {
+                    "materia": push(materia._id)
+                }
+            },
+            {
+                upsert: true
+            }
+        )
     }
 
     /**

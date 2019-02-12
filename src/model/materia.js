@@ -8,7 +8,7 @@ var MateriaSchema = new Schema(
     {
         name: { type: String, required: true, unique: true },
         work_load: { type: String, required: true},
-        carrera: { type: Schema.Types.ObjectId, ref: 'Carrera' }
+        carrera: [{ type: Schema.Types.ObjectId, ref: 'Carrera' }]
     }
 );
 
