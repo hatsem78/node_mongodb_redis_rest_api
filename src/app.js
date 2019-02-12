@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const index = require('./routes/index');
 const alumnoRoute = require('./routes/alumnoRoute');
 const carreraRoute = require('./routes/carreraRoute');
+const materiaRoute = require('./routes/materiaRoute');
 
 app.use(bodyParser.urlencoded({
     extended: true

@@ -8,6 +8,7 @@ var CarreraSchema = new Schema(
     {
         name: { type: String, required: true, unique: true },
         title: { type: String, required: true},
+
     }
 );
 
