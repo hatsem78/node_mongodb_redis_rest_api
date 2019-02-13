@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 //mongoose.set('useCreateIndex', true);
-require('../config/db');
 const Schema = mongoose.Schema;
 
 

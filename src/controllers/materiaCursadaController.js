@@ -14,10 +14,10 @@ exports.get = (req, res, next) => {
         } else {
             console.log('db');
             MateriaCursadaRepository.getAll()
-                .then((MateriaCursada) => {
-                client.set('allMaterias', JSON.stringify(MateriaCursada));
+                .then((materias_cursadas) => {
+                client.set('allMaterias', JSON.stringify(materias_cursadas));
             client.expire('allMateriaCursadas', 20);
-            res.status(200).send(Materia);
+            res.status(200).send(materias_cursadas);
         }).catch(err => res.status(500).send(err))
         }
     });
@@ -27,8 +27,8 @@ exports.get = (req, res, next) => {
 exports.getById = (req, res, next) => {
 
     MateriaCursadaRepository.getById(req.params.id)
-        .then((MateriaCursada) => {
-        res.status(200).send(MateriaCursada);
+        .then((materias_cursadas) => {
+        res.status(200).send(materias_cursadas);
 }).catch(err => res.status(500).send(err))
 };
 
@@ -36,8 +36,8 @@ exports.post = (req, res, next) => {
     const p = req.body;
 
     MateriaCursadaRepository.create(p)
-        .then((MateriaCursada) => {
-        res.status(200).send(MateriaCursada);
+        .then((materia_cursada) => {
+        res.status(200).send(materia_cursada);
 }).catch(err => res.status(500).send(err))
 };
 

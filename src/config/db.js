@@ -14,4 +14,6 @@ mongo.then(() => {
 });
 
 
+module.exports = mongoose;
+
 

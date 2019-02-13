@@ -8,7 +8,7 @@ var MateriaCursadaSchema = new Schema(
     {
         nota: { type: Number, default: 0 },
         cursada: { type: Boolean, default: false},
-        materia: { type: Schema.Types.ObjectId, ref: 'Materia' },
+        materia: { type: Schema.Types.ObjectId, ref: 'Materia', required: true }
     }
 );
 

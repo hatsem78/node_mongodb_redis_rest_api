@@ -20,26 +20,28 @@ module.exports = new class AlumnoRepository {
 
     update(id, alumno) {
 
-        return  Alumno.findOneAndUpdate(
-            {
-                lastname: alumno.lastname,
-                name: alumno.name,
-                date: alumno.date,
-                email: alumno.email,
-                phone: alumno.phone
-            },
-            {
+
+        var updatedalumno = {
+            lastname: alumno.lastname,
+            name: alumno.name,
+            date: alumno.date,
+            email: alumno.email,
+            phone: alumno.phone,
+            materia: alumno.materia,
                 $set: {
                     "address.street": alumno.address.street,
-                    "address.city": alumno.address.city,
-                    "address.province": alumno.address.province,
-                    "address.postal_code": alumno.address.postal_code,
+                        "address.city": alumno.address.city,
+                        "address.province": alumno.address.province,
+                        "address.postal_code": alumno.address.postal_code
                 }
-            },
-            {
-                upsert: true
-            }
-        )
+        }
+
+
+        return  Alumno.findOneAndUpdate(
+                    id,
+                    updatedalumno,
+                    {upsert: true, new: true}
+                )
     }
 
     delete(id) {

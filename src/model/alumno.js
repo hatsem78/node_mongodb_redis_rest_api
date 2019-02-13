@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 //mongoose.set('useCreateIndex', true);
-require('../config/db');
 const Schema = mongoose.Schema;
 
 
 var alumnoSchema = new Schema({
     //lastname: {type: String, unique: true },
     lastname: {type: String },
-    name: {type: String, unique: true },
+    name: {type: String},
     date: {type: Date},
     email: {
         type: String,

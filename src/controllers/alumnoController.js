@@ -27,9 +27,9 @@ exports.get = (req, res, next) => {
 exports.getById = (req, res, next) => {
 
     AlumnoRepository.getById(req.params.id)
-        .then((Alumno) => {
-        res.status(200).send(Alumno);
-}).catch(err => res.status(500).send(err))
+        .then((alumno) => {
+        res.status(200).send(alumno);
+    }).catch(err => res.status(500).send(err))
 };
 
 exports.post = (req, res, next) => {
