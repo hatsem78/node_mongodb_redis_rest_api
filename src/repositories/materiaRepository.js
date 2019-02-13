@@ -6,6 +6,7 @@ var Materia = require('../model/materia');
 // noinspection JSAnnotator
 module.exports = new class MateriaRepository {
 
+
     getAll() {
         return Materia.find();
     }
@@ -39,11 +40,6 @@ module.exports = new class MateriaRepository {
 
             return Materia.findOneAndUpdate(id, updatedcarrera,{ upsert: true, new: true});
         }
-
-
-
-
-
     }
 
     delete(id) {

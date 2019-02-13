@@ -69,13 +69,13 @@ module.exports = new class MateriaCursadaRepository {
 
      **/
     update(id, materia) {
+
         const updatedcarrera = {
             nota: materia.nota,
             cursada: materia.cursada,
         };
 
         return MateriaCursada.findOneAndUpdate(id, updatedcarrera,{ upsert: true, new: true});
-
     }
 
     delete(id) {
@@ -132,7 +132,7 @@ module.exports = new class MateriaCursadaRepository {
         return  new Promise(function(resolve) {
             resolve(Alumno.findOneAndUpdate(
                 id_alumno,
-                {materia: lista_materias},
+                {activo: false},
                 {upsert: true, new: true}
             ));
         });

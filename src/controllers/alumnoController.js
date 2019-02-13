@@ -53,6 +53,6 @@ exports.put = (req, res, next) => {
 exports.delete = (req, res, next) => {
     AlumnoRepository.delete(req.params.id)
         .then((Alumno) => {
-        res.status(200).send('delete succeeded!');
+        res.status(200).send('Alumno deshactivado');
 }).catch(err => console.error.bind(console, `Error ${err}`))
 };

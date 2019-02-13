@@ -6,20 +6,64 @@ var Alumno = require('../model/alumno');
 // noinspection JSAnnotator
 module.exports = new class AlumnoRepository {
 
+     /**
+    * retorna todas los alumnos inscriptos
+    * */
     getAll() {
         return Alumno.find();
     }
 
+    /**
+    * retorna un alumnos inscriptos
+    * */
     getById(id) {
         return Alumno.findById(id);
     }
 
+    /**
+    * crea la inscripción del almno
+    *@alumno {Objeto}
+    *    ejemplo
+    *    {
+    *        lastname: "",
+    *        name: "",
+    *        date: "",
+    *        email: "",
+    *        phone: "",
+    *        address: {
+    *            street: "",
+    *            city: "",
+    *            province: "",
+    *            postal_code: "",
+    *        },
+    *        carrera: "",
+    *        materia: ""
+    * */
     create(alumno) {
         return Alumno.create(alumno);
     }
 
+    /**
+    *Actualiza los datos del alumno
+    *@alumno {Objeto}
+    *    ejemplo
+    *    {
+    *        lastname: "",
+    *        name: "",
+    *        date: "",
+    *        email: "",
+    *        phone: "",
+    *        address: {
+    *            street: "",
+    *            city: "",
+    *            province: "",
+    *            postal_code: "",
+    *        },
+    *        carrera: "",
+    *        materia: ""
+    * */
+    */
     update(id, alumno) {
-
 
         var updatedalumno = {
             lastname: alumno.lastname,
@@ -27,6 +71,7 @@ module.exports = new class AlumnoRepository {
             date: alumno.date,
             email: alumno.email,
             phone: alumno.phone,
+            carrera: alumno.phone,
             materia: alumno.materia,
                 $set: {
                     "address.street": alumno.address.street,
@@ -36,7 +81,6 @@ module.exports = new class AlumnoRepository {
                 }
         }
 
-
         return  Alumno.findOneAndUpdate(
                     id,
                     updatedalumno,
@@ -44,7 +88,16 @@ module.exports = new class AlumnoRepository {
                 )
     }
 
+    /**
+    *Borrado logico del alumno, mantiene su historia
+    **/
     delete(id) {
+
+        Alumno.findOneAndUpdate(
+                id_alumno,
+                {materia: lista_materias},
+                {upsert: true, new: true}
+            )
         return Alumno.findByIdAndRemove(id);
     }
 

@@ -22,7 +22,8 @@ var alumnoSchema = new Schema({
         postal_code: {type: String, required: true, max: 100},
     },
     carrera: [{ type: Schema.Types.ObjectId, ref: 'Carreras' }],
-    materia: [{ type: Schema.Types.ObjectId, ref: 'Materias' }]
+    materia: [{ type: Schema.Types.ObjectId, ref: 'Materias' }],
+    activo: { type: Boolean, default: true}
 });
 
 // Virtual for author's full name
