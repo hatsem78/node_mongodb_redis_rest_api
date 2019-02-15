@@ -1,4 +1,5 @@
 //var compression = require('compression');
+const control_db = require('./src/config/index');
 
 const express = require('express');
 const router = express.Router();
@@ -6,11 +7,11 @@ const bodyParser = require("body-parser");
 const app = express();
 
 //Rotas
-const index = require('./routes/index');
-const alumnoRoute = require('./routes/alumnoRoute');
-const carreraRoute = require('./routes/carreraRoute');
-const materiaRoute = require('./routes/materiaRoute');
-const materiaCursadaRoute = require('./routes/materiaCursadaRoute');
+const index = require('./src/routes/index');
+const alumnoRoute = require('./src/routes/alumnoRoute');
+const carreraRoute = require('./src/routes/carreraRoute');
+const materiaRoute = require('./src/routes/materiaRoute');
+const materiaCursadaRoute = require('./src/routes/materiaCursadaRoute');
 
 
 
@@ -19,9 +20,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-
-//app.use(compression());
-
 
 app.use('/', index);
 app.use('/alumno', alumnoRoute);

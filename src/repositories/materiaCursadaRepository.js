@@ -1,5 +1,4 @@
 'use strict';
-const conection = require('../config/db');
 
 var MateriaCursada = require('../model/materiaCursada');
 
@@ -55,8 +54,6 @@ module.exports = new class MateriaCursadaRepository {
 
 
         var materias_actualizadas = await this.alumnoCarreraUpdate(carrera._doc._id.toString(), lista_id_materias.concat(materias_actuales));
-
-        //materias = materias.filter((elemento) => elemento.carrera.toString().indexOf(carrera.carrera.toString()) >= 0);
 
         return materias_actualizadas;
     }

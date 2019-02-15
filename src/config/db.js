@@ -7,7 +7,7 @@ const mongo = mongoose.connect(dbpath, {useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
 /*probamos si tnemos conecci{on*/
 mongo.then(() => {
-    console.log('connected');
+    console.log('connected dev');
 }).catch((err) => {
     console.log('err', err);
     return false;

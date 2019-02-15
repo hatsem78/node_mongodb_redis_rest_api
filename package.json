@@ -5,16 +5,27 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
     "express": "^4.15.4",
+    "mocha": "^5.2.0",
     "mongoose": "^5.4.10",
-    "redis": "^2.8.0"
+    "node-mocks-http": "^1.7.3",
+    "redis": "^2.8.0",
+    "should": "^13.2.3",
+    "sinon": "^6",
+    "sinon-mongoose": "^2.2.1",
+    "supertest": "^3.4.2"
   },
   "devDependencies": {
-    "nodemon": "^1.17.3"
+    "del": "^2.2.2",
+    "gulp-env": "^0.4.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-plumber": "^1.2.1",
+    "nodemon": "^1.17.3",
+    "run-sequence": "^1.2.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./bin/server.js"
+    "test": "NODE_ENV=test mocha --ui tdd src/test/"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-.idea
+.idea/
 core/wsgi.py
 *.pyc
 *.swp

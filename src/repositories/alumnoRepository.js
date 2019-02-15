@@ -62,7 +62,7 @@ module.exports = new class AlumnoRepository {
     *        carrera: "",
     *        materia: ""
     * */
-    */
+    
     update(id, alumno) {
 
         var updatedalumno = {
@@ -73,12 +73,13 @@ module.exports = new class AlumnoRepository {
             phone: alumno.phone,
             carrera: alumno.phone,
             materia: alumno.materia,
-                $set: {
-                    "address.street": alumno.address.street,
-                        "address.city": alumno.address.city,
-                        "address.province": alumno.address.province,
-                        "address.postal_code": alumno.address.postal_code
-                }
+            activo: true,
+            $set: {
+                "address.street": alumno.address.street,
+                    "address.city": alumno.address.city,
+                    "address.province": alumno.address.province,
+                    "address.postal_code": alumno.address.postal_code
+            }
         }
 
         return  Alumno.findOneAndUpdate(
@@ -88,16 +89,19 @@ module.exports = new class AlumnoRepository {
                 )
     }
 
+
     /**
-    *Borrado logico del alumno, mantiene su historia
+    * Borrado logico del alumno, mantiene su historia
+    * @id {String}
     **/
     delete(id) {
 
         Alumno.findOneAndUpdate(
-                id_alumno,
-                {materia: lista_materias},
-                {upsert: true, new: true}
-            )
+            id,
+            { activo: false},
+            { upsert: true, new: true  }
+        );
+
         return Alumno.findByIdAndRemove(id);
     }
 

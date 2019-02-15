@@ -12,7 +12,6 @@ exports.get = (req, res, next) => {
             console.log('redis');
             res.send(reply)
         } else {
-            console.log('db');
             MateriaCursadaRepository.getAll()
                 .then((materias_cursadas) => {
                 client.set('allMaterias', JSON.stringify(materias_cursadas));

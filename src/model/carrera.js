@@ -7,6 +7,7 @@ var CarreraSchema = new Schema(
     {
         name: { type: String, required: true, unique: true },
         title: { type: String, required: true},
+        activo: { type: Boolean, default: true}
 
     }
 );
