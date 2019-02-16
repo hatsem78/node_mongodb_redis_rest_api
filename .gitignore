@@ -6,9 +6,6 @@ core/wsgi.py
 .pyc
 .coverage
 
-
-
-
 .env
 env
 tags
