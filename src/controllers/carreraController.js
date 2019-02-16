@@ -6,13 +6,10 @@ var redis = require('redis');
 var client = redis.createClient();
 
 exports.get = (req, res, next) => {
-
     client.get('allCarrera', function (err, reply) {
         if (reply) {
-            console.log('redis');
             res.send(reply)
         } else {
-            console.log('db');
             CarreraRepository.getAll()
                 .then((Carrera) => {
                 client.set('allCarreras', JSON.stringify(Carrera));
@@ -21,15 +18,21 @@ exports.get = (req, res, next) => {
         }).catch(err => res.status(500).send(err))
         }
     });
-
 };
 
 exports.getById = (req, res, next) => {
-
-    CarreraRepository.getById(req.params.id)
-        .then((Carrera) => {
-        res.status(200).send(Carrera);
-}).catch(err => res.status(500).send(err))
+    client.get('getCarrera', function (err, reply) {
+        if (reply) {
+            res.send(reply)
+        } else {
+            CarreraRepository.getById(req.params.id)
+            .then((Carrera) => {
+                client.set('getCarrera', JSON.stringify(Carrera));
+                client.expire('getCarrera', 20);
+                res.status(200).send(Carrera);
+            }).catch(err => res.status(500).send(err))
+        }
+    });
 };
 
 exports.post = (req, res, next) => {
