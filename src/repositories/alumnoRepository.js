@@ -65,28 +65,40 @@ module.exports = new class AlumnoRepository {
     
     update(id, alumno) {
 
-        var updatedalumno = {
-            lastname: alumno.lastname,
-            name: alumno.name,
-            date: alumno.date,
-            email: alumno.email,
-            phone: alumno.phone,
-            carrera: alumno.phone,
-            materia: alumno.materia,
-            activo: true,
-            $set: {
-                "address.street": alumno.address.street,
+        if(Object.keys(alumno).length > 1 && Object.keys(alumno).indexOf('activo') >= 0){
+            var myquery = { _id: id };
+            var newvalues = { $set: {activo: false} };
+
+            return Alumno.updateOne(
+                myquery,
+                newvalues
+            );
+        }
+        else{
+
+            var updatedalumno = {
+                lastname: alumno.lastname,
+                name: alumno.name,
+                date: alumno.date,
+                email: alumno.email,
+                phone: alumno.phone,
+                carrera: alumno.carrera,
+                materia: alumno.materia,
+                activo: true,
+                $set: {
+                    "address.street": alumno.address.street,
                     "address.city": alumno.address.city,
                     "address.province": alumno.address.province,
                     "address.postal_code": alumno.address.postal_code
+                }
             }
-        }
 
-        return  Alumno.findOneAndUpdate(
-                    id,
-                    updatedalumno,
-                    {upsert: true, new: true}
-                )
+            return  Alumno.findOneAndUpdate(
+                id,
+                updatedalumno,
+                {upsert: true, new: true}
+            );
+        }
     }
 
 
@@ -96,13 +108,7 @@ module.exports = new class AlumnoRepository {
     **/
     delete(id) {
 
-        Alumno.findOneAndUpdate(
-            id,
-            { activo: false},
-            { upsert: true, new: true  }
-        );
-
-        return Alumno.findByIdAndRemove(id);
+        return Carrera.findByIdAndRemove(id);
     }
 
 }

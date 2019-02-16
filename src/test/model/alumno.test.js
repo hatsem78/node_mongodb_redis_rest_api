@@ -23,23 +23,26 @@ describe('Alumno CRUD integration testing', function () {
             "province": "caba",
             "postal_code": "1111"
         },
-        "carrera": "",
-        "materia": []
+        "carrera": [],
+        "materia": [],
+        _id: '5c683adfcd1c393625280e1b'
     };
 
     describe('## Crea una Alumno ', function() {
         it('Debería crear una Alumno', function(done) {
             request(app)
                 .post('/alumno')
-                .send(task)
+                .send(alumno)
                 .end(function(err, res) {
+                    console.log(res.text);
                     expect(res.statusCode).to.equal(200);
-                    expect(res.body.name).to.equal('integration test');
+                    expect(res.body.name).to.equal('Nombre test');
                     alumno = res.body;
                     done();
                 });
         });
     });
+
 
     describe('Get Todas las Alumno', function () {
 
@@ -82,12 +85,12 @@ describe('Alumno CRUD integration testing', function () {
 
     describe('Delete Alumno por id', function() {
         it('Debería eliminar una Alumno por id', function(done) {
-            request(app) .get('/alumno/' + carrera._id) .end(function(err, res) {
+            request(app) .del('/alumno/' + carrera._id) .end(function(err, res) {
                 expect(res.statusCode).to.equal(200);
                 expect(res.body.name).to.equal('integration test');
                 done();
             });
         });
-    });
+    });*/
 
 });

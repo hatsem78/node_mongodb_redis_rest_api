@@ -59,7 +59,7 @@ exports.put = (req, res) => {
 
 exports.delete = (req, res, next) => {
     CarreraRepository.delete(req.params.id)
-        .then((Carrera) => {
+        .then((carrera) => {
         res.status(200).send('delete succeeded!');
 }).catch(err => console.error.bind(console, `Error ${err}`))
 };

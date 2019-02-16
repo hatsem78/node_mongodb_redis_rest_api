@@ -21,8 +21,8 @@ var alumnoSchema = new Schema({
         province: {type: String, required: true, max: 100},
         postal_code: {type: String, required: true, max: 100},
     },
-    carrera: [{ type: Schema.Types.ObjectId, ref: 'Carreras' }],
-    materia: [{ type: Schema.Types.ObjectId, ref: 'Materias' }],
+    carrera: [{ type: Schema.Types.ObjectId, ref: 'Carrera' }],
+    materia: [{ type: Schema.Types.ObjectId, ref: 'Materia' }],
     activo: { type: Boolean, default: true}
 });
 

@@ -123,8 +123,6 @@ module.exports = new class MateriaCursadaRepository {
      * @lsta_materia {array} Lista de las materias que se anoto el alumno
      * */
     alumnoCarreraUpdate(id_alumno, lista_materias){
-        console.log(id);
-        console.log(lista_materias);
 
         return  new Promise(function(resolve) {
             resolve(Alumno.findOneAndUpdate(

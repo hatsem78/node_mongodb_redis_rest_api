@@ -29,7 +29,8 @@ app.use('/materia_cursada', materiaCursadaRoute);
 
 module.exports = app;
 
+app.set('port', 3000);
 
-app.listen(3000, function () {
+app.listen(app.get('port'), function () {
     console.log('app listening on port 3000!');
 });

@@ -14,9 +14,23 @@ describe('Carrera CRUD integration testing', function () {
     var carrera = {
         name: 'integration test',
         title: 'integration test',
+
+
     };
 
-    var id_carrera = '';
+   describe('## Crea una carrera ', function() {
+        it('Debería crear una carrera', function(done) {
+            request(app)
+                .post('/carrera')
+                .send(carrera)
+                .end(function(err, res) {
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body.name).to.equal('integration test');
+                    carrera = res.body;
+                    done();
+                });
+        });
+    });
 
     describe('Get Todas las Carreras', function () {
 
@@ -27,21 +41,7 @@ describe('Carrera CRUD integration testing', function () {
                 .end(function(err, res){
                     expect(res.statusCode).to.equal(200);
                     expect(res.body[0].activo).to.equal(true);
-                    done();
-                });
-        });
-    });
-
-
-    describe('## Crea una carrera ', function() {
-        it('Debería crear una carrera', function(done) {
-            request(app)
-                .post('/carrera')
-                .send(task)
-                .end(function(err, res) {
-                    expect(res.statusCode).to.equal(200);
-                    expect(res.body.name).to.equal('integration test');
-                    carrera = res.body;
+                    carrera = res.body[0];
                     done();
                 });
         });
@@ -60,11 +60,14 @@ describe('Carrera CRUD integration testing', function () {
 
     describe('Delete carrera por id', function() {
         it('Debería eliminar una carrera por id', function(done) {
-            request(app) .get('/carrera/' + carrera._id) .end(function(err, res) {
+
+            request(app) .del('/carrera/5c6847aaadade1439c2682d7')
+            .end(function(err, res){
                 expect(res.statusCode).to.equal(200);
-                expect(res.body.name).to.equal('integration test');
-                done();
-            });
+                expect(typeof res.body).to.eql('object')
+                expect(res.body.msg).to.eql('success')
+                done()
+            })
         });
     });
 

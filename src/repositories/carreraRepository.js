@@ -44,13 +44,25 @@ module.exports = new class CarreraRepository {
      * */
     update(id, carrera) {
 
-        const updatedcarrera = {
-            name: carrera.name,
-            title: carrera.title,
-            activo: true
+        if(Object.keys(carrera).length > 1 && Object.keys(carrera).indexOf('activo') >= 0){
+            var myquery = { _id: id };
+            var newvalues = { $set: {activo: false} };
+
+            return Carrera.updateOne(
+                myquery,
+                newvalues
+            );
+        }
+        else{
+            const updatedcarrera = {
+                name: carrera.name,
+                title: carrera.title,
+                activo: true
+            }
+
+            return Carrera.findOneAndReplace(id, updatedcarrera);
         }
 
-        return Carrera.findOneAndReplace(id, updatedcarrera);
     }
 
     /**
@@ -60,11 +72,7 @@ module.exports = new class CarreraRepository {
      * */
     delete(id) {
 
-        Carrera.findOneAndUpdate(
-            id,
-            { activo: false },
-            {upsert: true, new: true}
-        );
+        return Carrera.findByIdAndRemove(id);
 
     }
 
