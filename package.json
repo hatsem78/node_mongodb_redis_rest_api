@@ -19,7 +19,7 @@
   "devDependencies": {
     "del": "^2.2.2",
     "gulp-env": "^0.4.0",
-    "gulp-mocha": "^2.2.0",
+    "gulp-mocha": "^8.0.0",
     "gulp-plumber": "^1.2.1",
     "nodemon": "^1.17.3",
     "run-sequence": "^1.2.2"
